@@ -1,0 +1,25 @@
+---
+title: "report on gun murders"
+author: "Wannapol B."
+date: "`r format(Sys.Date())`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(tidyverse)
+```
+
+
+
+```{r}
+
+load("rda/murders.rda")
+murders %>% 
+  mutate(abb = reorder(abb, rate)) %>%
+  ggplot(aes(abb, rate)) +
+  geom_bar(width = 0.5, stat = "identity", color = "black") +
+  coord_flip()
+```
+
+
